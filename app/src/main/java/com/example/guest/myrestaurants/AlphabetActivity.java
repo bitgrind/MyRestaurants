@@ -14,5 +14,8 @@ public class AlphabetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        gridView = (GridView) findViewById(R.id.baseGridView);
+        gridView.setAdapter(new AlphabetAdapter(this, letters));
     }
 }

@@ -21,8 +21,10 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.findRestaurantsButton) Button mFindRestaurantButton;
+    @Bind(R.id.findAlphabetButton) Button mFindAlphabetButton;
     @Bind(R.id.locationEditText) EditText mLocationEditText;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
+    private String TAG = "alphabet Location";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String location = mLocationEditText.getText().toString();
             Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
             intent.putExtra("location", location);
+            startActivity(intent);
+        }
+        if (v == mFindAlphabetButton) {
+            Log.i(TAG,"go to alphabet location");
+            Intent intent = new Intent(MainActivity.this, AlphabetActivity.class);
             startActivity(intent);
         }
     }
