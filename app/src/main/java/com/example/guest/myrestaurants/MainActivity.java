@@ -17,9 +17,11 @@ import org.w3c.dom.Text;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
-    @Bind (R.id.findRestaurantsButton) Button mFindRestaurantButton;
-    @Bind (R.id.locationEditText) EditText mLocationEditText;
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    @Bind(R.id.findRestaurantsButton) Button mFindRestaurantButton;
+    @Bind(R.id.locationEditText) EditText mLocationEditText;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
 
     @Override
@@ -40,5 +42,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mFindRestaurantButton) {
+            String location = mLocationEditText.getText().toString();
+            Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
+            intent.putExtra("location", location);
+            startActivity(intent);
+        }
     }
 }
