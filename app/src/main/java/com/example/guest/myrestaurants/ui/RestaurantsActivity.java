@@ -3,11 +3,14 @@ package com.example.guest.myrestaurants.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.guest.myrestaurants.R;
+import com.example.guest.myrestaurants.adapters.RestaurantListAdapter;
 import com.example.guest.myrestaurants.models.Restaurant;
 import com.example.guest.myrestaurants.services.YelpService;
 
@@ -23,13 +26,10 @@ import okhttp3.Response;
 public class RestaurantsActivity extends AppCompatActivity {
     public static final String TAG = RestaurantsActivity.class.getSimpleName();
 
-    @Bind(R.id.locationTextView) TextView mLocationTextView;
-    @Bind(R.id.listView) ListView mListView;
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    private RestaurantListAdapter mAdapter;
 
     public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
-
-    private String[] restaurants = new String[] {"Fresh Roll","Sams Sushi","Road House","Peoples Pig","Pizza-A-Go-Go","Tasty's and Sons","Subway","Chipotle","Quesabrosa","Tan Door","Cruz Room","Bar Bar"};
-    private String[] cuisines = new String[] {"Vegan Food", "Breakfast", "Fishs Dishs", "Scandinavian", "Coffee", "English Food", "Burgers", "Fast Food", "Noodle Soups", "Mexican", "BBQ", "Cuban", "Bar Food", "Sports Bar", "Breakfast", "Mexican" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +40,7 @@ public class RestaurantsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
 
-        mLocationTextView.setText("Here are all the Restaurants near: " + location);
-
         getRestaurants(location);
-
     }
 
     private void getRestaurants(String location){
@@ -64,15 +61,12 @@ public class RestaurantsActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-
-                        String[] restaurantNames = new String[mRestaurants.size()];
-                        for (int i = 0; i < restaurantNames.length; i++) {
-                            restaurantNames[i] = mRestaurants.get(i).getName();
-                        }
-
-                        ArrayAdapter adapter = new ArrayAdapter(RestaurantsActivity.this,
-                                android.R.layout.simple_list_item_1, restaurantNames);
-                        mListView.setAdapter(adapter);
+                        mAdapter = new RestaurantListAdapter(getApplicationContext(), mRestaurants);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager =
+                                new LinearLayoutManager(RestaurantsActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
                     }
                 });
             }
