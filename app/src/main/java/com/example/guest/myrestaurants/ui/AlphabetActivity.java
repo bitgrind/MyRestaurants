@@ -1,8 +1,10 @@
-package com.example.guest.myrestaurants;
+package com.example.guest.myrestaurants.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
+
+import com.example.guest.myrestaurants.R;
 
 public class AlphabetActivity extends AppCompatActivity {
     GridView gridView;

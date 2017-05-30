@@ -1,4 +1,4 @@
-package com.example.guest.myrestaurants;
+package com.example.guest.myrestaurants.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.guest.myrestaurants.R;
 
 public class AlphabetAdapter extends BaseAdapter {
     private Context mContext;

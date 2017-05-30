@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.guest.myrestaurants.MainActivity"
+    tools:context="com.example.guest.myrestaurants.ui.MainActivity"
     android:saveEnabled="false">
 
     <Button
@@ -17,19 +17,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/locationEditText"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_above="@+id/findRestaurantsButton"
-        android:layout_marginBottom="10dp"
-        android:padding="5dp"
-        android:hint="Enter Zip"
-        android:layout_centerHorizontal="true"
-        android:background="@color/colorDivider" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,6 +50,19 @@
         android:layout_above="@+id/locationEditText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationEditText"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_above="@+id/findRestaurantsButton"
+        android:layout_marginBottom="10dp"
+        android:padding="5dp"
+        android:hint="Enter Zip"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorDivider" />
 
 
 </RelativeLayout>
